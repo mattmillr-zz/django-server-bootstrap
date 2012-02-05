@@ -3,7 +3,8 @@ from fabric.api import env, run, sudo
 from fabric.utils import abort
 from fabric.context_managers import settings
 
-GITHUB_URL_TEMPLATE = "git@github.com:%(git-username)s/%(git-repo)s.git"
+GITHUB_URL_TEMPLATE = "git://github.com/%(git-username)s/%(git-repo)s.git"
+GITHUB_KEY = "github.com,207.97.227.239 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=="
 
 env.user = 'deploy'
 
@@ -78,14 +79,32 @@ def install_basics():
     nginx()
     mercurial()
 
+def clone_git_config_repo():
+    run('touch ~/.ssh/known_hosts')
+    run ('echo "%s" >> ~/.ssh/known_hosts' % GITHUB_KEY)
+    git_repo_url = GITHUB_URL_TEMPLATE % CONFIG
+    run('git clone %s' % (git_repo_url,))
+    run('ls -al')
 
-def git_config_repo():
-    run('mkdir ')
+def restart_apache():
+    sudo('/etc/init.d/apache2 restart')
 
+def config_apache():
+    sudo('cp /home/deploy/%(git-repo)s/ports.conf /etc/apache2/' % CONFIG)
+    sudo('cp /home/deploy/%(git-repo)s/apache2.conf /etc/apache2/' % CONFIG)
+    restart_apache()
+    
+def restart_nginx():
+    pass
+    
+def config_nginx():
+    pass
+     # restart_nginx() 
+     
 def server_settings():
-    # clone this git repo
-    # copy settings for apache
-    # copy settings for nginx
+    #clone_git_config_repo()
+    config_apache()
+    config_nginx()
     
 def app_folders():
     run('mkdir ~/apps')

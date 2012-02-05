@@ -1,6 +1,7 @@
 USAGE:
 
 1. Copy server_configs.py.example to server_configs.py.
-2. Copy the server_name() method and change the name and settings as necesary.
-3. Run: fab <your_server_method_name> bootstrap
+2. Add your ssh public keys
+3. Copy the server_name() method and change the name and settings as necesary.
+4. Run: fab <your_server_method_name> bootstrap
 	
