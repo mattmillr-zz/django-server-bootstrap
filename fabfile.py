@@ -3,10 +3,7 @@ from fabric.api import env, run, sudo
 from fabric.utils import abort
 from fabric.context_managers import settings
 
-CONFIG = {}
-CONFIG['authorizedkeys'] = (
-    'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwfYSqGg+4wH3NM5X5UIufOkQFISrH5RKahpIqq/b77YfVPUa3axlv0G17Ob+8AqNuCThpn9nZqYrpXBqbevIYQV9ZsMosIGY5FowRL4fcxFpQ1gpk0IqQVUahKM9O3ta//Vz7Y0bj6njGosXZ46aLaypAJMrmcdk/bxOHmFVdfx8dJi30LgIryzJRueDVub3EJatTL0Ewtuc4MsyUwC4vfM85+B7PBOVqz8MTTVjA79pAlznGOj2NH6t0lfiATDE8pIhDO7OMhQXwiR226Mg0OZaPCwdIsQSG/U1CxpVRYABZrC1mabmvmqK9re7gpOmClusqS7+KK5ja6IVR8QmZQ== mattmiller25@gmail.com',
-    )
+GITHUB_URL_TEMPLATE = "git@github.com:%(git-username)s/%(git-repo)s.git"
 
 env.user = 'deploy'
 
@@ -73,7 +70,7 @@ def nginx():
 def mercurial():
     apt_get()
     
-def basics():
+def install_basics():
     update()
     mysql()  
     tools()
@@ -81,6 +78,15 @@ def basics():
     nginx()
     mercurial()
 
+
+def git_config_repo():
+    run('mkdir ')
+
+def server_settings():
+    # clone this git repo
+    # copy settings for apache
+    # copy settings for nginx
+    
 def app_folders():
     run('mkdir ~/apps')
 
@@ -90,6 +96,7 @@ def app_framework():
 def bootstrap():
     add_deploy_user()
     test_login()
-    basics()
+    install_basics()
+    server_settings()
     app_framework()
 
