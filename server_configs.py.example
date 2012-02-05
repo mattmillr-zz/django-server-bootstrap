@@ -1,0 +1,5 @@
+from fabric.api import env
+
+# Copy this method for each server/group you want to configure
+def server_name():
+    env.hosts = ['1.2.3.4',]

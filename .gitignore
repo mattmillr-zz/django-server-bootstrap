@@ -16,3 +16,4 @@ dev.sqlite
 *.original
 *.bak
 *.orig
+server_configs.py
