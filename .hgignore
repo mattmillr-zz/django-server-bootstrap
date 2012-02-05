@@ -1,0 +1,19 @@
+# use glob syntax.
+syntax: glob
+*.pyc
+.DS_Store
+local_settings.py
+kiln_creds.py
+tags
+*.swp
+*~
+*.original
+*.bak
+*.orig
+.git
+.gitignore
+djangy*
+.idea
+dev.sqlite-journal
+dev.sqlite
+*.ids
