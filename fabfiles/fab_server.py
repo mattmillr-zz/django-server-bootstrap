@@ -79,7 +79,7 @@ def clone_git_config_repo():
     run ('echo "%s" >> ~/.ssh/known_hosts' % GITHUB_KEY)
     git_repo_url = GITHUB_URL_TEMPLATE % CONFIG
     run('rm -rf %(git-repo)s' % CONFIG)
-    run('git clone %s repos/' % (git_repo_url,))
+    run('git clone %s server_config_repo/' % (git_repo_url,))
     run('ls -al')
 
 def config_apache():

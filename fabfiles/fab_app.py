@@ -5,7 +5,7 @@ from fabric.context_managers import settings
 
 from fab_config import *
 
-def install_app():
+def install():
     # create db & set user permissions
     # create app folder /apps/app-name
     # create repo folder /apps/app-name/repo
@@ -15,4 +15,13 @@ def install_app():
     pass
     
 def deploy():
+    # config timestamp
+    # pull & update repo on server
+    # copy files to release dir
+    # update virtualenv dependencies
+    # symlink current --> release
+    # copy apache config
+    # copy nginx confi
+    # reload apache
+    # restart nginx
     pass
