@@ -83,26 +83,23 @@ def clone_git_config_repo():
     run('touch ~/.ssh/known_hosts')
     run ('echo "%s" >> ~/.ssh/known_hosts' % GITHUB_KEY)
     git_repo_url = GITHUB_URL_TEMPLATE % CONFIG
+    run('rm -rf %(git-repo)s' % CONFIG)
     run('git clone %s' % (git_repo_url,))
     run('ls -al')
-
-def restart_apache():
-    sudo('/etc/init.d/apache2 restart')
 
 def config_apache():
     sudo('cp /home/deploy/%(git-repo)s/ports.conf /etc/apache2/' % CONFIG)
     sudo('cp /home/deploy/%(git-repo)s/apache2.conf /etc/apache2/' % CONFIG)
-    restart_apache()
-    
-def restart_nginx():
-    pass
+    sudo('/etc/init.d/apache2 restart')
     
 def config_nginx():
-    pass
-     # restart_nginx() 
+    sudo('mkdir /var/www/cache/one -p')
+    sudo('mkdir /var/www/cache/temp -p')
+    sudo('cp /home/deploy/%(git-repo)s/nginx.conf /etc/nginx/' % CONFIG)
+    sudo('/etc/init.d/nginx restart')
      
 def server_settings():
-    #clone_git_config_repo()
+    clone_git_config_repo()
     config_apache()
     config_nginx()
     
