@@ -1,0 +1,15 @@
+from fabric.api import env
+
+ 
+CONFIG = {}
+CONFIG['authorizedkeys'] = (
+    'copy id-rsa.pub keys here',
+    )
+    
+# TODO: There's probably a way to get all this from the local .git stuff
+CONFIG['git-username'] = 'mattmillr'
+CONFIG['git-repo'] = 'django-server-bootstrap'
+
+# Copy this method for each server/group you want to configure
+def server_name():
+    env.hosts = ['1.2.3.4',]

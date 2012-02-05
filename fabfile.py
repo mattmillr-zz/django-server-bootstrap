@@ -2,5 +2,5 @@ from fabric.api import env
 
 env.user = 'deploy'
 
-from fab_server import *
-from fab_app import *
+from fabfiles.fab_server import *
+from fabfiles.fab_app import *
