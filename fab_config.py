@@ -9,8 +9,8 @@ CONFIG['authorizedkeys'] = (
 CONFIG['git-username'] = 'mattmillr'
 CONFIG['git-repo'] = 'django-server-bootstrap'
 
-
-
-
 def bksw1():
     env.hosts = ['66.228.46.218',]
+    global DJANGO_ENV
+    DJANGO_ENV = 'dev'
+    

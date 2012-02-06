@@ -6,10 +6,18 @@ from fabric.context_managers import settings
 from fab_config import *
 
 def install():
-    # create db & set user permissions
+    
+    global DJANGO_ENV
+    global CONFIG
+    
+    if not DJANGO_ENV:
+        abort("You must specify a Django environment to set up.")
+    
     # create app folder /apps/app-name
     # create repo folder /apps/app-name/repo
     # checkout repo
+
+    # create db & set user permissions
     # create virtualenv folder /apps/app-name/virtualenv
     # create virtualenv
     pass
