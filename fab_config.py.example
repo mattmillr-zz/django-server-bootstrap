@@ -5,6 +5,8 @@ CONFIG = {}
 CONFIG['authorizedkeys'] = (
     'copy id-rsa.pub keys here',
     )
+
+GITHUB_KEY = ""
     
 # TODO: There's probably a way to get all this from the local .git stuff
 CONFIG['git-username'] = 'mattmillr'
